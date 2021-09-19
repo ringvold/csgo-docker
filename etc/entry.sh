@@ -21,6 +21,11 @@ if [ ! -f "${STEAMAPPDIR}/${STEAMAPP}/cfg/server.cfg" ]; then
 	if [ ! -z "$SOURCEMOD_VERSION" ]; then
 		LATESTSM=$(wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/sourcemod-latest-linux)
 		wget -qO- https://sm.alliedmods.net/smdrop/"${SOURCEMOD_VERSION}"/"${LATESTSM}" | tar xvzf - -C "${STEAMAPPDIR}/${STEAMAPP}"
+
+		if [ ! -z "$GET5_VERSION" ]; then
+			wget -qo /tmp/get5.zip https://github.com/splewis/get5/releases/download/0.7.2/get5_0.7.2.zip
+			unzip /tmp/get5.zip "get5/*" -d ${STEAMAPPDIR}/${STEAMAPP}/
+		fi
 	fi
 
 	# Change hostname on first launch (you can comment this out if it has done it's purpose)
